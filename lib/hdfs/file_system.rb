@@ -8,8 +8,7 @@ module Hdfs
     import org.apache.hadoop.conf.Configuration
     import org.apache.hadoop.fs.FileSystem
     
-    def initialize
-      conf = Configuration.new
+    def initialize(conf = Configuration.new)
       @fs=org.apache.hadoop.fs.FileSystem.get(conf)
     end
     
