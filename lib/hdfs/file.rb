@@ -7,9 +7,11 @@ module Hdfs
   #
   class File < Delegator
     
-    def initialize(path,mode="r")
+    def initialize(path, mode = 'r', fs = Hdfs.fs)
+
+      @fs = fs
       
-      _mode=self.class.parse_mode(mode)
+      _mode = self.class.parse_mode(mode)
       
       if _mode & IO::RDWR != 0
         @readable = true
@@ -25,18 +27,15 @@ module Hdfs
         raise Errno::ENOENT, "File not a regular file" unless File.file?(path)
       end
     
-      @stream = Hdfs.fs.open(path,@writable)
+      @stream = @fs.open(path,@writable)
     end
     
     def writable?
       @writeable
     end
     
-    
-    
     def self.open(*args)
-      f=File.new(args[0]) if args.length == 1
-      f=File.new(args[0],args[1]) if args.length == 2
+      f = File.new(*args) if args.length > 0 && args.length < 4
 
       if block_given?
         begin
