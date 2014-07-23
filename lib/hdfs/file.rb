@@ -76,7 +76,11 @@ module Hdfs
     def self.executable?(path); false; end
     # will always return => false
     def self.executable_real?(path); false; end
-    
+
+    def self.dir(path)
+      Hdfs.fs.dir(path)
+    end
+
     class << self
        alias_method :exist?, :exists?
     end

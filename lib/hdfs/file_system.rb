@@ -47,7 +47,12 @@ module Hdfs
     def close
       @fs.close
     end
-    
+
+    def dir(path)
+      path = coerce_path path
+      @fs.listStatus(path.path).map { |path| path.path }
+    end
+
     def __getobj__
       @fs
     end
