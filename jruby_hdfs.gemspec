@@ -21,5 +21,5 @@ Gem::Specification.new do |gem|
     gem.platform = "jruby"
   end
   
-  gem.add_development_dependency "rake"
+  gem.add_development_dependency "rake", "~> 0"
 end
