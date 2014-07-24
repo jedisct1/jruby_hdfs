@@ -81,6 +81,10 @@ module Hdfs
       Hdfs.fs.dir(path)
     end
 
+    def self.delete(path, recursive = FALSE)
+      Hdfs.fs.delete(path, recursive)
+    end
+
     class << self
        alias_method :exist?, :exists?
     end

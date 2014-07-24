@@ -53,6 +53,10 @@ module Hdfs
       @fs.listStatus(path.path).map { |path| path.path }
     end
 
+    def delete(path, recursive = FALSE)
+      @fs.delete(path.path, recursive)
+    end
+
     def __getobj__
       @fs
     end
