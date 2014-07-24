@@ -54,6 +54,7 @@ module Hdfs
     end
 
     def delete(path, recursive = FALSE)
+      path = coerce_path path
       @fs.delete(path.path, recursive)
     end
 
